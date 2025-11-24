@@ -26,7 +26,7 @@ jobs:
       - name: Login no dockerhub
         uses: docker/login-action@v3
         with:
-          username: ${{secrets.DOCKER_USERNAME}}
+          username: ${{secrets.DOCKER_LOGIN}}
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: push para o dockerhub
@@ -34,4 +34,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{secrets.DOCKER_USERNAME}}/atv2-iec:latest
+          tags: ${{secrets.DOCKER_LOGIN}}/atv2-iec:latest
