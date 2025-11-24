@@ -1,0 +1,30 @@
+name: workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Configurar java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '22'
+
+      - name: Testes
+        run: mvn -B clean package
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: atv2-jar
+          path: target/*.jar
